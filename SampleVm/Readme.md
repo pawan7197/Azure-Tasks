@@ -95,6 +95,23 @@ You should see the **Nginx Welcome Page**.
 - Navigate to: `http://<your-public-ip>`
 - You should see the **Welcome to Azure VM Web App** page 🎉
 ## Images
+## 1. Create virtual machine
+
+<img width="1600" height="900" alt="Image" src="https://github.com/user-attachments/assets/13f2d9fa-0d6a-4989-ae60-9840b6d8fc28" />
+
+
+
+## 2. Create SSH command
+
+<img width="1600" height="900" alt="Image" src="https://github.com/user-attachments/assets/6664c7c9-e16b-41f4-822a-b096c9d10d37" />
+
+## 3. NGINX status
+
+<img width="1600" height="900" alt="Image" src="https://github.com/user-attachments/assets/5e8f924e-d701-4efe-a722-d35194efd5df" />
+
+## 4. Output of sample VM
+
+<img width="1600" height="900" alt="Image" src="https://github.com/user-attachments/assets/38908f63-d83e-453b-aef9-f5b11862fe11" />
 
 ## Optional: Clean Up
 To avoid charges:
