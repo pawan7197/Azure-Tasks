@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SpiceTrail Biryani — Order Online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f1a;           /* Deep navy background */
+      --panel:#11182a;        /* Card background */
+      --muted:#7f8da3;        /* Muted text */
+      --text:#ecf1ff;         /* Primary text */
+      --brand1:#ff7a59;       /* Warm accent */
+      --brand2:#7a5cff;       /* Cool accent */
+      --brand3:#00d1b2;       /* Mint accent */
+      --ok:#22c55e;           /* Success */
+      --warn:#f59e0b;         /* Warning */
+      --danger:#ef4444;       /* Danger */
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;background:radial-gradient(1200px 800px at 20% -10%, rgba(122,92,255,.25), transparent 60%),
+               radial-gradient(1200px 800px at 120% 10%, rgba(0,209,178,.18), transparent 60%), var(--bg); color:var(--text); font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;}
+    a{color:inherit}
+    .container{max-width:1200px;margin-inline:auto;padding:24px}
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.1) blur(10px);
+      background:linear-gradient( to right, rgba(17,24,42,.85), rgba(17,24,42,.55));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{display:flex;align-items:center;gap:16px;justify-content:space-between;padding:14px 24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.3px}
+    .logo{width:40px;height:40px;border-radius:12px;background:
+      conic-gradient(from 200deg, var(--brand1), var(--brand2), var(--brand3), var(--brand1));
+      box-shadow:0 6px 14px rgba(0,0,0,.3);}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#cfe0ff;font-size:12px}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;padding:28px 24px}
+    .heroCard{background:linear-gradient(135deg, rgba(122,92,255,.15), rgba(255,122,89,.12)); border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow); border-radius:var(--radius); padding:28px}
+    .hero h1{margin:0 0 12px;font-size:36px;line-height:1.15}
+    .hero p{margin:0 0 18px;color:#cfe0ff}
+    .heroActions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{cursor:pointer;border:0;border-radius:14px;padding:12px 16px;font-weight:600; transition:.25s transform, .25s box-shadow}
+    .btn:hover{transform:translateY(-1px)}
+    .btnPrimary{background:linear-gradient(135deg, var(--brand2), var(--brand1));color:white; box-shadow:0 8px 20px rgba(122,92,255,.35)}
+    .btnGhost{background:rgba(255,255,255,.06); color:#e6edff; border:1px solid rgba(255,255,255,.08)}
+
+    .grid{display:grid;grid-template-columns:2fr 1fr; gap:24px}
+
+    /* Menu */
+    .menuPanel{background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)}
+    .menuHeader{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .search{flex:1;display:flex;gap:8px}
+    .search input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:var(--text);padding:10px 12px;border-radius:12px;outline:none}
+    .filters{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);cursor:pointer;font-weight:600;font-size:12px}
+    .chip.active{background:linear-gradient(135deg, rgba(122,92,255,.25), rgba(0,209,178,.25));}
+    .menuGrid{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:16px;padding:18px}
+    .card{display:grid;grid-template-columns:110px 1fr; gap:12px; align-items:center; background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px}
+    .thumb{width:100%;height:90px;border-radius:12px;object-fit:cover;border:1px solid rgba(255,255,255,.08)}
+    .title{font-weight:700}
+    .muted{color:var(--muted);font-size:13px}
+    .price{font-weight:700}
+    .addRow{display:flex;align-items:center;gap:8px;margin-top:10px}
+    .qty{display:flex;align-items:center;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+    .qty button{background:rgba(255,255,255,.06);border:0;color:var(--text);width:32px;height:32px;font-size:18px;cursor:pointer}
+    .qty input{width:44px;text-align:center;background:transparent;border:0;color:var(--text);font-weight:600}
+
+    /* Cart */
+    .cart{background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column;}
+    .cartHeader{padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center}
+    .cartBody{padding:16px; display:flex; flex-direction:column; gap:12px; max-height:520px; overflow:auto}
+    .cartItem{display:grid;grid-template-columns:1fr auto; gap:10px; padding:10px;border:1px dashed rgba(255,255,255,.12); border-radius:12px}
+    .cartFoot{margin-top:auto;padding:16px;border-top:1px solid rgba(255,255,255,.06);display:grid;gap:10px}
+    .row{display:flex;justify-content:space-between;align-items:center}
+    .total{font-size:20px;font-weight:800}
+    .promo{display:flex; gap:8px}
+    .promo input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:var(--text);padding:10px 12px;border-radius:12px;outline:none}
+
+    /* Checkout form */
+    .checkout{background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); margin-top:24px}
+    .section{padding:16px 18px;border-top:1px solid rgba(255,255,255,.06)}
+    .section h3{margin:0 0 10px}
+    form{display:grid;gap:12px}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:var(--text);padding:10px 12px;border-radius:12px;outline:none;width:100%}
+    .select{appearance:none}
+    .radioRow{display:flex;gap:12px;flex-wrap:wrap}
+    .badge{padding:4px 8px;border-radius:8px;font-size:12px;font-weight:700}
+    .badge.veg{background:#155e27;color:#a7f3d0}
+    .badge.nonveg{background:#5e1522;color:#fecaca}
+
+    /* Toast */
+    .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg, rgba(34,197,94,.25), rgba(122,92,255,.25));border:1px solid rgba(255,255,255,.15);color:var(--text);padding:14px 18px;border-radius:12px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.4s}
+    .toast.show{opacity:1;pointer-events:auto}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .menuGrid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-size:18px">SpiceTrail Biryani</div>
+          <div class="muted" style="font-size:12px">Hyderabad's favourites, now at your door</div>
+        </div>
+      </div>
+      <div class="pill" aria-live="polite">Open · 11:00–23:00 · Avg delivery 30–40 min</div>
+    </div>
+    <div class="hero container">
+      <div class="heroCard">
+        <h1>Order piping hot biryani in a <span style="background:linear-gradient(90deg,var(--brand2),var(--brand1));-webkit-background-clip:text;background-clip:text;color:transparent">colorful</span>, professional way.</h1>
+        <p>Freshly dum-cooked, sealed with aromas. Customize spice level, rice type, and add your favourite sides.</p>
+        <div class="heroActions">
+          <a class="btn btnPrimary" href="#menu">Browse Menu</a>
+          <a class="btn btnGhost" href="#checkout">Go to Checkout</a>
+        </div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1625944528846-8ee8b1dd7c3e?q=80&w=1200&auto=format&fit=crop" alt="Biryani bowl" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius); border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow)" />
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid" id="menu">
+      <!-- Menu Panel -->
+      <section class="menuPanel" aria-labelledby="menuTitle">
+        <div class="menuHeader">
+          <h2 id="menuTitle" style="margin:0">Menu</h2>
+          <div class="search" role="search">
+            <input id="searchInput" placeholder="Search biryani, sides, drinks…" aria-label="Search menu" />
+          </div>
+          <div class="filters" role="group" aria-label="Filters">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="veg">Veg</button>
+            <button class="chip" data-filter="nonveg">Non-Veg</button>
+            <button class="chip" data-filter="spicy">Spicy</button>
+            <button class="chip" data-filter="family">Family Packs</button>
+          </div>
+        </div>
+        <div class="menuGrid" id="menuGrid" aria-live="polite">
+          <!-- Cards injected by JS -->
+        </div>
+      </section>
+
+      <!-- Cart Panel -->
+      <aside class="cart" aria-labelledby="cartTitle">
+        <div class="cartHeader">
+          <h2 id="cartTitle" style="margin:0">Your Cart</h2>
+          <button class="chip" id="clearCartBtn" title="Clear cart">Clear</button>
+        </div>
+        <div class="cartBody" id="cartBody">
+          <div class="muted">Your cart is empty. Add something tasty! 🍽️</div>
+        </div>
+        <div class="cartFoot">
+          <div class="promo">
+            <input id="promoCode" placeholder="Promo code (e.g., SPICE10)" aria-label="Promo code" />
+            <button class="btn btnGhost" id="applyPromo">Apply</button>
+          </div>
+          <div class="row"><span>Subtotal</span><strong id="subtotal">₹0</strong></div>
+          <div class="row"><span>Delivery</span><span id="delivery">₹39</span></div>
+          <div class="row"><span>Tax (5%)</span><span id="tax">₹0</span></div>
+          <div class="row total"><span>Total</span><span id="total">₹0</span></div>
+          <a href="#checkout" class="btn btnPrimary" id="checkoutBtn">Proceed to Checkout</a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Checkout -->
+    <section class="checkout" id="checkout" aria-labelledby="checkoutTitle">
+      <div class="menuHeader">
+        <h2 id="checkoutTitle" style="margin:0">Checkout</h2>
+        <span class="muted">Secure & quick</span>
+      </div>
+      <div class="section">
+        <h3>Delivery Details</h3>
+        <form id="checkoutForm">
+          <div class="grid2">
+            <input class="input" required placeholder="Full name" id="name" />
+            <input class="input" required type="tel" placeholder="Phone" id="phone" />
+          </div>
+          <input class="input" required placeholder="Address line" id="address" />
+          <div class="grid2">
+            <input class="input" placeholder="Landmark (optional)" id="landmark" />
+            <select class="input select" id="orderType">
+              <option value="delivery">Delivery</option>
+              <option value="pickup">Pickup</option>
+            </select>
+          </div>
+
+          <h3>Preferences</h3>
+          <div class="grid2">
+            <select class="input select" id="spice">
+              <option value="Medium">Spice: Medium</option>
+              <option value="Low">Spice: Low</option>
+              <option value="Hot">Spice: Hot</option>
+            </select>
+            <select class="input select" id="rice">
+              <option value="Basmati">Rice: Basmati</option>
+              <option value="Seeraga Samba">Rice: Seeraga Samba</option>
+            </select>
+          </div>
+
+          <div class="radioRow" role="group" aria-label="Cutlery">
+            <label><input type="checkbox" id="cutlery" /> No cutlery needed</label>
+            <label><input type="checkbox" id="extraRaita" /> Extra raita</label>
+            <label><input type="checkbox" id="extraSalan" /> Extra salan</label>
+          </div>
+
+          <h3>Payment</h3>
+          <div class="radioRow" role="radiogroup" aria-label="Payment method">
+            <label><input type="radio" name="pay" value="COD" checked /> Cash on Delivery</label>
+            <label><input type="radio" name="pay" value="UPI" /> UPI</label>
+            <label><input type="radio" name="pay" value="Card" /> Card</label>
+          </div>
+
+          <button type="submit" class="btn btnPrimary" style="margin-top:6px">Place Order</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Order placed! We texted your confirmation 📲</div>
+
+  <footer class="container" style="padding:40px 24px 80px;color:#9fb0cc">
+    <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
+      <div class="logo" aria-hidden="true" style="width:28px;height:28px"></div>
+      <strong>SpiceTrail Biryani</strong>
+      <span class="muted">· Crafted with ❤ in Hyderabad</span>
+    </div>
+    <small>Demo only — no actual orders are processed.</small>
+  </footer>
+
+  <script>
+    // --- Data ---
+    const MENU = [
+      {id:1, title:"Hyderabadi Chicken Biryani", price:269, tag:["nonveg"], spicy:true, img:"https://images.unsplash.com/photo-1596797038530-2c107229f2d6?q=80&w=1200&auto=format&fit=crop"},
+      {id:2, title:"Hyderabadi Mutton Biryani", price:329, tag:["nonveg"], spicy:true, img:"https://images.unsplash.com/photo-1625944528846-8ee8b1dd7c3e?q=80&w=1200&auto=format&fit=crop"},
+      {id:3, title:"Veg Dum Biryani", price:219, tag:["veg"], spicy:false, img:"https://images.unsplash.com/photo-1625944596568-974e1b16a3d8?q=80&w=1200&auto=format&fit=crop"},
+      {id:4, title:"Egg Biryani", price:199, tag:["nonveg"], spicy:false, img:"https://images.unsplash.com/photo-1617195737497-7b3b0d5eca66?q=80&w=1200&auto=format&fit=crop"},
+      {id:5, title:"Paneer Tikka Biryani", price:249, tag:["veg"], spicy:false, img:"https://images.unsplash.com/photo-1625944552279-778725b8f164?q=80&w=1200&auto=format&fit=crop"},
+      {id:6, title:"Family Pack Chicken (1kg)", price:699, tag:["nonveg","family"], spicy:true, img:"https://images.unsplash.com/photo-1633945274405-1b0d8f6f6fc1?q=80&w=1200&auto=format&fit=crop"},
+      {id:7, title:"Family Pack Veg (1kg)", price:599, tag:["veg","family"], spicy:false, img:"https://images.unsplash.com/photo-1625944567354-3a1d9bce19bb?q=80&w=1200&auto=format&fit=crop"},
+      {id:8, title:"Double Ka Meetha", price:129, tag:["veg"], spicy:false, img:"https://images.unsplash.com/photo-1551024709-8f23befc6cf7?q=80&w=1200&auto=format&fit=crop"},
+      {id:9, title:"Gulab Jamun (2 pcs)", price:99, tag:["veg"], spicy:false, img:"https://images.unsplash.com/photo-1615486363877-929f5d2eaba6?q=80&w=1200&auto=format&fit=crop"},
+      {id:10, title:"Mineral Water", price:30, tag:["veg"], spicy:false, img:"https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=1200&auto=format&fit=crop"}
+    ];
+
+    const INR = n => `₹${n.toLocaleString('en-IN')}`;
+    const cart = new Map();
+
+    // --- Render Menu ---
+    const grid = document.getElementById('menuGrid');
+    function renderMenu(list){
+      grid.innerHTML = '';
+      list.forEach(item => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.setAttribute('data-tags', item.tag.join(','));
+        card.setAttribute('data-title', item.title.toLowerCase());
+        card.setAttribute('data-spicy', item.spicy);
+        card.innerHTML = `
+          <img class="thumb" src="${item.img}" alt="${item.title}"/>
+          <div>
+            <div class="title">${item.title} ${item.tag.includes('veg') ? '<span class="badge veg" aria-label="Vegetarian">VEG</span>' : '<span class="badge nonveg" aria-label="Non-Vegetarian">NON-VEG</span>'}</div>
+            <div class="muted">Aromatic, slow-cooked dum biryani.</div>
+            <div class="addRow">
+              <span class="price">${INR(item.price)}</span>
+              <div class="qty" aria-label="Quantity">
+                <button aria-label="Decrease" data-act="dec">−</button>
+                <input value="1" inputmode="numeric" pattern="[0-9]*" aria-label="Qty" />
+                <button aria-label="Increase" data-act="inc">+</button>
+              </div>
+              <button class="btn btnGhost" data-add="${item.id}">Add</button>
+            </div>
+          </div>`;
+
+        // Quantity controls
+        const input = card.querySelector('input');
+        card.querySelectorAll('[data-act]').forEach(btn => btn.addEventListener('click', () => {
+          const v = Math.max(1, (parseInt(input.value||'1')||1) + (btn.dataset.act==='inc'?1:-1));
+          input.value = v;
+        }));
+        card.querySelector('[data-add]').addEventListener('click', () => {
+          const qty = parseInt(input.value)||1;
+          addToCart(item, qty);
+        });
+        grid.appendChild(card);
+      });
+    }
+
+    // --- Search & Filters ---
+    const chips = [...document.querySelectorAll('.chip')];
+    const searchInput = document.getElementById('searchInput');
+    chips.forEach(c=>c.addEventListener('click',()=>{
+      chips.forEach(x=>x.classList.remove('active'));
+      c.classList.add('active');
+      applyFilters();
+    }));
+    searchInput.addEventListener('input', applyFilters);
+
+    function applyFilters(){
+      const term = searchInput.value.trim().toLowerCase();
+      const filter = document.querySelector('.chip.active').dataset.filter;
+      const list = MENU.filter(m => {
+        const matchesText = !term || m.title.toLowerCase().includes(term);
+        const byTag = filter==='all' || m.tag.includes(filter) || (filter==='spicy' && m.spicy) || (filter==='family' && m.tag.includes('family'));
+        return matchesText && byTag;
+      });
+      renderMenu(list);
+    }
+
+    // --- Cart Logic ---
+    const cartBody = document.getElementById('cartBody');
+    const subtotalEl = document.getElementById('subtotal');
+    const taxEl = document.getElementById('tax');
+    const totalEl = document.getElementById('total');
+    const deliveryEl = document.getElementById('delivery');
+
+    function addToCart(item, qty=1){
+      cart.set(item.id, {item, qty: (cart.get(item.id)?.qty || 0) + qty});
+      renderCart();
+      toast(`${item.title} ×${qty} added to cart`);
+    }
+
+    function updateQty(id, delta){
+      if(!cart.has(id)) return;
+      const row = cart.get(id);
+      row.qty = Math.max(1, row.qty + delta);
+      cart.set(id, row);
+      renderCart();
+    }
+
+    function removeItem(id){
+      cart.delete(id); renderCart();
+    }
+
+    function renderCart(){
+      if(cart.size===0){
+        cartBody.innerHTML = '<div class="muted">Your cart is empty. Add something tasty! 🍽️</div>';
+      } else {
+        cartBody.innerHTML = '';
+        cart.forEach(({item, qty}) => {
+          const row = document.createElement('div');
+          row.className = 'cartItem';
+          row.innerHTML = `
+            <div>
+              <strong>${item.title}</strong>
+              <div class="muted">${INR(item.price)} each</div>
+              <div class="radioRow" style="margin-top:6px">
+                <button class="chip" data-q="-1">−</button>
+                <span>Qty: <strong>${qty}</strong></span>
+                <button class="chip" data-q="1">+</button>
+                <button class="chip" data-remove>Remove</button>
+              </div>
+            </div>
+            <div style="text-align:right;font-weight:700">${INR(item.price*qty)}</div>`;
+          row.querySelector('[data-q="-1"]').addEventListener('click', ()=>updateQty(item.id,-1));
+          row.querySelector('[data-q="1"]').addEventListener('click', ()=>updateQty(item.id,1));
+          row.querySelector('[data-remove]').addEventListener('click', ()=>removeItem(item.id));
+          cartBody.appendChild(row);
+        });
+      }
+      recalcTotals();
+    }
+
+    function recalcTotals(){
+      let subtotal = 0; cart.forEach(({item, qty})=> subtotal += item.price*qty);
+      const delivery = cart.size ? 39 : 0;
+      const tax = Math.round(subtotal * 0.05);
+      const total = subtotal + delivery + tax - currentDiscount(subtotal);
+      subtotalEl.textContent = INR(subtotal);
+      deliveryEl.textContent = INR(delivery);
+      taxEl.textContent = INR(tax);
+      totalEl.textContent = INR(Math.max(0,total));
+    }
+
+    // --- Promo codes ---
+    const promos = { 'SPICE10': 0.10, 'WELCOME50': 50 } // 10% or flat ₹50
+    let appliedPromo = null;
+
+    function currentDiscount(subtotal){
+      if(!appliedPromo) return 0;
+      const val = promos[appliedPromo];
+      return (val<1) ? Math.round(subtotal*val) : val; // percent or flat
+    }
+
+    document.getElementById('applyPromo').addEventListener('click', () => {
+      const code = document.getElementById('promoCode').value.trim().toUpperCase();
+      if(!code) return;
+      if(!(code in promos)) return toast('Invalid code. Try SPICE10 or WELCOME50');
+      appliedPromo = code; toast(`${code} applied!`); recalcTotals();
+    });
+
+    document.getElementById('clearCartBtn').addEventListener('click', ()=>{cart.clear(); renderCart();});
+    document.getElementById('checkoutBtn').addEventListener('click', (e)=>{ if(cart.size===0){ e.preventDefault(); toast('Add items to cart first'); }});
+
+    // --- Checkout ---
+    document.getElementById('checkoutForm').addEventListener('submit', e => {
+      e.preventDefault();
+      if(cart.size===0){ toast('Your cart is empty'); return; }
+      const order = {
+        customer: {
+          name: document.getElementById('name').value.trim(),
+          phone: document.getElementById('phone').value.trim(),
+          address: document.getElementById('address').value.trim(),
+          landmark: document.getElementById('landmark').value.trim(),
+          orderType: document.getElementById('orderType').value,
+        },
+        prefs: {
+          spice: document.getElementById('spice').value,
+          rice: document.getElementById('rice').value,
+          cutlery: document.getElementById('cutlery').checked,
+          extraRaita: document.getElementById('extraRaita').checked,
+          extraSalan: document.getElementById('extraSalan').checked,
+          pay: document.querySelector('input[name="pay"]:checked')?.value || 'COD'
+        },
+        items: [...cart.values()].map(({item, qty}) => ({id:item.id, title:item.title, price:item.price, qty})),
+        pricing: {
+          subtotal: subtotalEl.textContent,
+          tax: taxEl.textContent,
+          delivery: deliveryEl.textContent,
+          total: totalEl.textContent,
+          promo: appliedPromo
+        },
+        createdAt: new Date().toISOString()
+      };
+
+      console.log('Order', order);
+      localStorage.setItem('spicetrail_last_order', JSON.stringify(order));
+      toast('Order placed! We texted your confirmation 📲');
+      cart.clear(); renderCart(); e.target.reset();
+      document.getElementById('promoCode').value=''; appliedPromo=null; recalcTotals();
+    });
+
+    // --- Toast helper ---
+    const toastEl = document.getElementById('toast');
+    let toastTimer = null;
+    function toast(msg){
+      toastEl.textContent = msg; toastEl.classList.add('show');
+      clearTimeout(toastTimer); toastTimer = setTimeout(()=>toastEl.classList.remove('show'), 2500);
+    }
+
+    // Init
+    renderMenu(MENU);
+  </script>
+</body>
+</html>
