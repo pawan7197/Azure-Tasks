@@ -127,4 +127,4 @@ To avoid charges:
   
   **LinkedIn-URL:**   https://www.linkedin.com/in/pawan-kumar-kothapalli-17865b302/
   
-  **Mail-Id: **  pawankumarkothapalli22644@gmail.com
+  **Mail-Id:**  pawankumarkothapalli22644@gmail.com
