@@ -117,3 +117,11 @@ You should see the **Nginx Welcome Page**.
 To avoid charges:
 - Stop or delete the VM
 - Delete the resource group (`LabRG`) to remove everything
+
+
+  ## Author:
+
+  **Pawankumar Kothapallli**
+  **Azure cloud Practitioner**
+  **LinkedIn-URL:**   https://www.linkedin.com/in/pawan-kumar-kothapalli-17865b302/
+  **Mail-Id: **  pawankumarkothapalli22644@gmail.com
