@@ -241,7 +241,7 @@ This removes all resources and avoids ongoing charges.
 
 
 
-✅ Lab Completed: You have successfully deployed Azure Application Gateway, configured backend VMs, and routed traffic using Layer 7 load balancing.
+✅ Lab Completed: Successfully deployed Azure Application Gateway, configured backend VMs, and routed traffic using Layer 7 load balancing.
 
 
 ## Author:
