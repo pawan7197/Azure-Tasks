@@ -133,11 +133,6 @@ Setup Autoscaling	✅
 
 Access Public Website	✅
 
-## Author: 
-
-**Pawankumar Kothapalli****
-
-**Azure Cloud Practioner**
 ## Images:
 
 ## 1.Load Balancer:
@@ -153,6 +148,11 @@ Access Public Website	✅
 
 <img width="1592" height="736" alt="Image" src="https://github.com/user-attachments/assets/0160ef73-3131-4c37-8bde-31a92f9e6aee" />
 
+## Author: 
+
+**Pawankumar Kothapalli****
+
+**Azure Cloud Practioner**
 
 **Gmail:**  pawankumarkothapalli22644@gmail.com
 
