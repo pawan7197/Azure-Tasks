@@ -138,6 +138,20 @@ Access Public Website	✅
 **Pawankumar Kothapalli****
 
 **Azure Cloud Practioner**
+## Images:
+
+## 1.Load Balancer:
+
+
+<img width="1594" height="729" alt="Image" src="https://github.com/user-attachments/assets/a2808af3-35c4-4e5d-923a-1013f40c1ac6" />
+
+## 2. Loadbalancer Output
+
+<img width="1593" height="718" alt="Image" src="https://github.com/user-attachments/assets/c845456d-0506-4dbd-869c-f07622795a90" />
+
+## 3. Autoscale
+
+<img width="1592" height="736" alt="Image" src="https://github.com/user-attachments/assets/0160ef73-3131-4c37-8bde-31a92f9e6aee" />
 
 
 **Gmail:**  pawankumarkothapalli22644@gmail.com
