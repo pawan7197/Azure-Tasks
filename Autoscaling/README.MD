@@ -148,6 +148,10 @@ Access Public Website	✅
 
 <img width="1592" height="736" alt="Image" src="https://github.com/user-attachments/assets/0160ef73-3131-4c37-8bde-31a92f9e6aee" />
 
+## 4. VMSS Output
+
+<img width="1593" height="718" alt="Image" src="https://github.com/user-attachments/assets/d9fb9b40-d4cd-45d1-a799-0751f6220d49" />
+
 ## Author: 
 
 **Pawankumar Kothapalli****
