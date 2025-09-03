@@ -209,8 +209,39 @@ This removes all resources and avoids ongoing charges.
 
 ## Images:
 
+## 1.Virtual machine
 
-✅ Lab Completed: You have successfully deployed Azure Application Gateway, configured backend VMs, and routed traffic using Layer 7 load balancing.
+<img width="1596" height="711" alt="Image" src="https://github.com/user-attachments/assets/09276535-e55f-4702-b322-65826960e4e6" />
+
+## 2.App1 virtual machine
+
+<img width="1591" height="738" alt="Image" src="https://github.com/user-attachments/assets/007c6484-613e-47cb-9f6b-e1639faa1b81" />
+
+## 3. App1 server output 1
+
+<img width="1584" height="747" alt="Image" src="https://github.com/user-attachments/assets/d81f91e7-373a-46e5-900a-265669dbb15b" />
+
+## 4. App2 server virtual machine2
+
+<img width="1597" height="720" alt="Image" src="https://github.com/user-attachments/assets/d9661a5e-ea34-4f86-a1c1-7c91db6c558b" />
+
+## 5.App2 output
+
+<img width="1599" height="732" alt="Image" src="https://github.com/user-attachments/assets/f76f5c53-b323-4bb9-a15b-9ae144d5d52b" />
+
+## 6. Load balancing configure
+
+<img width="1593" height="705" alt="Image" src="https://github.com/user-attachments/assets/2fb8c771-55c4-409d-b76f-dab5cbf679d9" />
+
+## 7. Load balancer output
+
+<img width="1599" height="715" alt="Image" src="https://github.com/user-attachments/assets/5135e95e-bf0a-4dba-8308-ccdfbe20fdae" />
+
+
+
+
+
+✅ Lab Completed: Successfully deployed Azure Application Gateway, configured backend VMs, and routed traffic using Layer 7 load balancing.
 
 
 ## Author:
