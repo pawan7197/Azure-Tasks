@@ -82,7 +82,8 @@ Learn how to create a container in Azure Storage Account, upload files, configur
 
 9. paste the URL in new tab and the file should open publicly in the browser
 
-<img width="1599" height="817" alt="Output2" src="https://github.com/user-attachments/assets/3fa1d2de-4af7-4141-89f5-9c180748762c" />
+![pic](https://github.com/user-attachments/assets/8ace6fa2-e0e4-4c6f-a3c6-9e6a252a0d6c)
+
 
 ## ✅ Result  
 File is now publicly accessible via the copied URL.
